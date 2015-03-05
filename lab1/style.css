@@ -1,0 +1,229 @@
+/* Don't make sense in IE... */
+
+/* initialize */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* move to the center */
+#at-plus-container {
+    width: 4rem;
+
+    margin: 0 auto;
+}
+
+/* move to the bottom */
+#bottom-positioner {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 3rem;
+}
+
+/* none list type */
+#at-plus-container li {
+    list-style-type: none;
+}
+
+#button {
+    width: 4rem;
+    height: 4rem;
+}
+
+
+/* background of the original 'a+' button */
+.icon {
+    width: 2rem;
+    height: 2rem;
+    margin: 0 auto;
+
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5) url(assets/images/atplus_white.png) no-repeat center;
+    background-size: 90%;
+
+    transition: all 0.5s ease;
+}
+
+/* background of the hover 'a+' button */
+#button:hover .icon {
+    width: 4rem;
+    height: 4rem;
+
+    border-radius: 50%;
+    background: rgba(48, 63, 159, 1) url(assets/images/atplus_green.png) no-repeat center;
+    background-size: 90%;
+}
+
+/* move to the center of .icon */
+#info-bar {
+    position: absolute;
+    text-align: center;
+    border-radius: 50%;
+
+    width: 1rem;
+    height: 1rem;
+
+    left: 1.5rem;
+    top: 0.5rem;
+
+    overflow: hidden; /* hide lists */
+
+    transition: all 0.5s ease;
+
+}
+
+/* move up by 'left' and 'top' */
+#button:hover #info-bar {
+    width: 7rem;
+    height: 7rem;
+
+    left: -1.5rem;
+    top: -8rem;
+
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* details in #info-bar */
+
+.info, .button {
+    font-weight: bold;
+    text-align: center;
+    font-family: "Arial";
+}
+
+.info span {
+    vertical-align: top;
+}
+
+.info img {
+    margin-right: 0.5rem;
+}
+
+.user {
+    margin-top: 0.5rem;
+}
+
+.comment {
+    font-size: 2rem;
+}
+
+.page {
+    color: white;
+}
+
+.mine {
+    display: inline-block;
+    /* for inline */
+    color: #079E6E;
+}
+
+/* move to the center of .icon */
+.button {
+    position: absolute;
+    text-align: center;
+    border-radius: 50%;
+
+    width: 1rem;
+    height: 1rem;
+
+    left: 1.5rem;
+    top: 0.5rem;
+
+    overflow: hidden; /* hide lists */
+
+    transition: all 0.5s ease;
+}
+
+
+/* details of #control-ring */
+/* move to appropriate position by 'left' and 'top' */
+
+.unread {
+    position: absolute;
+
+    left: 1rem;
+
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    color: white;
+    background: red;
+
+    transition: all 0.5s ease;
+}
+
+#button:hover .mask {
+    width: 2rem;
+    height: 2rem;
+
+    left: -2.5rem;
+    top: -1.5rem;
+
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5) url(assets/images/mask.png) no-repeat center;
+    background-size: 60%;
+}
+
+#button:hover .history {
+    width: 2rem;
+    height: 2rem;
+
+    left: -3.3rem;
+    top: 0.8rem;
+
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5) url(assets/images/history.png) no-repeat center;
+    background-size: 60%;
+}
+
+#button:hover .message {
+    width: 2rem;
+    height: 2rem;
+
+    left: -2.4rem;
+    top: 3.1rem;
+
+    overflow: visible;
+    /* for the right-top unread */
+
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5) url(assets/images/message.png) no-repeat center;
+    background-size: 60%;
+}
+
+#button:hover .setting {
+    width: 2rem;
+    height: 2rem;
+
+    left: -0.8rem;
+    top: 4.8rem;
+
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5) url(assets/images/setting.png) no-repeat center;
+    background-size: 60%;
+}
+
+
+#button:hover .sign {
+    width: 2rem;
+    height: 2rem;
+
+    left: 1.7rem;
+    top: 4.7rem;
+
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5) url(assets/images/signin.png) no-repeat center;
+    background-size: 60%;
+}
+
+#button:hover .unread {
+    left: 1.5rem;
+    top: -0.2rem;
+
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    color: white;
+    background: red;
+}
