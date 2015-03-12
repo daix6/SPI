@@ -45,13 +45,15 @@ function sortWay(th) {
     th.className = th_class;
 
     if (th.className.match(/(?:^|\s)ascend(?!\S)/)) {
-        th.className = th.className.replace( /(?:^|\s)ascend(?!\S)/g, 'descend' );
+        th.className = th.className.replace( /(?:^|\s)ascend(?!\S)/g, '' );
+        th.className += ' descend';
         return descend;
     } else if (th.className.match( /(?:^|\s)descend(?!\S)/ )) {
-        th.className = th.className.replace( /(?:^|\s)descend(?!\S)/g, 'ascend' );
+        th.className = th.className.replace( /(?:^|\s)descend(?!\S)/g, '' );
+        th.className += ' ascend'
         return ascend;
     } else {
-        th.className += "ascend";
+        th.className += ' ascend';
         return ascend;
     }
 }
@@ -63,6 +65,14 @@ function sortColumn(col, table, way) {
  * way: 排序方式（true: 升序，false: 降序）
  */
     var rows = [].slice.call(table.getElementsByTagName('tbody')[0].getElementsByTagName('tr'));
+    
+    var rows_th, rows_th_class;
+    if (rows[0].getElementsByTagName('th').length != 0) {
+        rows_th = rows[0];
+        rows_th_class = rows[0].className;
+        rows.splice(0, 1);
+    }
+
     rows.sort(function(row_a, row_b) {
         var col_a = row_a.getElementsByTagName('td')[col].innerHTML;
         var col_b = row_b.getElementsByTagName('td')[col].innerHTML;
@@ -70,12 +80,18 @@ function sortColumn(col, table, way) {
         else if (col_a < col_b) return -1;
         else return 0;
     });
+
     if (!way) rows.reverse();
     
     var tbody = table.getElementsByTagName('tbody')[0];
     while (tbody.firstChild) {
         tbody.removeChild(tbody.firstChild);
     }
+
+    if (rows_th) {
+        rows_th.className = rows_th_class;
+        tbody.appendChild(rows_th);
+    };
     for (var i = 0; i < rows.length; ++i) {
         tbody.appendChild(rows[i]);
     }

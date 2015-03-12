@@ -30,11 +30,11 @@ thead {
 th.ascend {
     background: #B0C4DE url("ascend.png") no-repeat right;
 
-    transition: background-image 0.5s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
 }
 
 th.descend {
     background: #B0C4DE url("descend.png") no-repeat right;
-    
-    transition: background-image 0.5s ease-in-out;
+
+    transition: background-color 0.1s ease-in-out;
 }
