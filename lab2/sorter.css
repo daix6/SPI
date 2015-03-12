@@ -8,6 +8,7 @@ table, th, td {
     border: 1px solid #D3D3D3;
 }
 
+/* Using pseudo for different color in even and odd rows */
 tbody tr:nth-child(even) {
     background-color: #E8E8E8;
 }
@@ -27,6 +28,8 @@ thead {
     font-weight: bold;
 }
 
+
+/*For after click*/
 th.ascend {
     background: #B0C4DE url("ascend.png") no-repeat right;
 
