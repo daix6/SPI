@@ -37,7 +37,7 @@ function sortWay(th) {
     var th_class = th.className;
 
     var ths = document.getElementsByTagName('th');
-    for (var i = 0; i < ths.length; i++) {
+    for (var i = 0; i < ths.length; ++i) {
         ths[i].className = ths[i].className.replace( /(?:^|\s)ascend(?!\S)/g, '' );
         ths[i].className = ths[i].className.replace( /(?:^|\s)descend(?!\S)/g, '' );
     }
@@ -57,14 +57,26 @@ function sortWay(th) {
 }
 
 
-function sortColumn(col, rows, way) {
+function sortColumn(col, table, way) {
 /* col: 根据此列排序
- * rows: 需要排序的所有列
- * way: 排序方式（true：升序，false：降序）
+ * table: 需要排列的表
+ * way: 排序方式（true: 升序，false: 降序）
  */
-if (way) {
-        
-    } else {
-
+    var rows = [].slice.call(table.getElementsByTagName('tbody')[0].getElementsByTagName('tr'));
+    rows.sort(function(row_a, row_b) {
+        var col_a = row_a.getElementsByTagName('td')[col].innerHTML;
+        var col_b = row_b.getElementsByTagName('td')[col].innerHTML;
+        if (col_a > col_b) return 1;
+        else if (col_a < col_b) return -1;
+        else return 0;
+    });
+    if (!way) rows.reverse();
+    
+    var tbody = table.getElementsByTagName('tbody')[0];
+    while (tbody.firstChild) {
+        tbody.removeChild(tbody.firstChild);
+    }
+    for (var i = 0; i < rows.length; ++i) {
+        tbody.appendChild(rows[i]);
     }
 }
