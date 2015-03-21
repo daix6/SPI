@@ -55,13 +55,6 @@ function extend(base, derived) {
     }
 }
 
-function link(a, b) {
-    return function() {
-        a.call(this);
-        b.call(this);
-    }
-}
-
 extend(Base, Derived);
 
 console.log("------------------test1---------------");
