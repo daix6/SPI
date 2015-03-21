@@ -32,7 +32,12 @@ function extend(base, derived) {
     for (var i in bp) {
         if (typeof(bp[i]) === "function" && typeof(dp[i]) === "function") {
             var temp = dp[i];
-            dp[i] = link(bp[i], temp);
+            dp[i] = function (base, derived) {
+                return function () {
+                    base.call(this);
+                    derived.call(this);
+                }
+            }(bp[i], temp);
         }
     }
     var b = base;
@@ -40,7 +45,12 @@ function extend(base, derived) {
     for (var i in b) {
         if (typeof(b[i]) === "function" && typeof(d[i]) === "function") {
             var temp = d[i];
-            d[i] = link(b[i], temp);
+            d[i] = function (base, derived) {
+                return function () {
+                    base.call(this);
+                    derived.call(this);
+                }
+            }(b[i], temp);
         }
     }
 }
