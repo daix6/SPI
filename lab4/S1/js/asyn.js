@@ -1,15 +1,26 @@
 ;window.onload = function() {
     var container = document.getElementById("at-plus-container");
+    var lists = document.getElementsByClassName("button");
+    var info_bar = document.getElementsByClassName("info")[0];
 
-    getRequest();
     init();
+
+    for (var i = 0; i < lists.length; ++i) {
+        addEvent(lists[i], 'click', function(j) {
+            return function() {
+                getNumber(lists[j]);
+            };
+        }(i))
+    }
+    addEvent(info_bar, 'click', showSum);
 }
 
-function getRequest(request) {
+function getRequest(request, element) {
     if (request) {
         var container = document.getElementById("at-plus-container");
-        if (!container.mouseleave) {
+        if (!container.hasMouseleave) {
             addEvent(container, 'mouseleave', reset(request));
+            container.hasMouseleave = true;
         }
     }
 }
@@ -23,10 +34,8 @@ function reset(request) {
 
 function init() {
 
-    var at_plus = document.getElementsByClassName("apb")[0];
     var lists = document.getElementsByClassName("button");
     var info_bar = document.getElementsByClassName("info")[0];
-
 
     for (var i = 0; i < lists.length; ++i) {
         var span = lists[i].getElementsByTagName("span")[0];
@@ -35,16 +44,6 @@ function init() {
         lists[i].setAttribute("disabled", false);
     }
     info_bar.innerHTML = "";
-
-    for (var i = 0; i < lists.length; ++i) {
-        addEvent(lists[i], 'click', function(j) {
-            return function() {
-                getNumber(lists[j]);
-            };
-        }(i))
-    }
-    addEvent(info_bar, 'click', showSum);
-
 }
 
 function disableOthers(element) {
@@ -85,7 +84,7 @@ function getNumber(element) {
                     element.className = addClass(element, "disabled");
                     enableOthers();
                 } else {
-                    console.log('Request was unsuccessful: ' + request.status);
+                    alert('Request was unsuccessful: ' + request.status);
                 }
             }
         }
@@ -94,7 +93,7 @@ function getNumber(element) {
         disableOthers(element);
         red.className = addClass(red, "success");
         red.textContent = "...";
-        getRequest(request);
+        getRequest(request, element);
     } else {
         return;
     }

@@ -148,6 +148,10 @@ html {
     transition: all 1s;
 }
 
+#at-plus-container:hover #control-ring li:hover {
+    background-color: rgba(48, 63, 159, 1);
+}
+
 #at-plus-container:hover #control-ring li.disabled {
     background-color: rgba(0, 0, 0, 0.8);
 }
@@ -167,7 +171,7 @@ html {
     width: 2rem;
     height: 2rem;
 
-    background: rgba(48,63,159,0.8);
+    background: rgba(48, 63, 159, 0.8);
 }
 
 #at-plus-container:hover .history {
