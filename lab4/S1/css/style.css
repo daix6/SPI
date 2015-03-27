@@ -49,6 +49,11 @@ html {
     transition: all 1s;
 }
 
+.info {
+    width: 100%;
+    height: 100%;
+}
+
 /* 实现先收拢@+区域再回 */
 .apb {
     background-color: rgba(0, 0, 0, 0.6);
@@ -124,6 +129,18 @@ html {
     transition: all 1s;
 }
 
+#at-plus-container:hover #info-bar:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#at-plus-container:hover .info {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    padding-top: 1rem;
+    color: rgb(78, 238, 148);
+}
+
 #at-plus-container:hover #control-ring li {
     opacity: 1;
     /* 列表 复现！ */
@@ -131,6 +148,11 @@ html {
     transition: all 1s;
 }
 
+#at-plus-container:hover #control-ring li.disabled {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* 后台发出请求时 */
 #control-ring li span.success {
     opacity: 1;
     /* 红圆圈 复现！ */
@@ -145,7 +167,7 @@ html {
     width: 2rem;
     height: 2rem;
 
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(48,63,159,0.8);
 }
 
 #at-plus-container:hover .history {
@@ -155,7 +177,7 @@ html {
     width: 2rem;
     height: 2rem;
 
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(48,63,159,0.8);
 }
 
 #at-plus-container:hover .message {
@@ -165,7 +187,7 @@ html {
     width: 2rem;
     height: 2rem;
 
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(48,63,159,0.8);
 }
 
 #at-plus-container:hover .setting {
@@ -175,7 +197,7 @@ html {
     width: 2rem;
     height: 2rem;
 
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(48,63,159,0.8);
 }
 
 #at-plus-container:hover .sign {
@@ -185,7 +207,7 @@ html {
     width: 2rem;
     height: 2rem;
 
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(48,63,159,0.8);
 }
 
 /* 变大！ */
