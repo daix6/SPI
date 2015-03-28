@@ -38,6 +38,7 @@ function init() {
 
     var lists = document.getElementsByClassName("button");
     var info_bar = document.getElementsByClassName("info")[0];
+    var at_plus = document.getElementsByClassName("icon")[0];
 
     for (var i = 0; i < lists.length; ++i) {
         var span = lists[i].getElementsByTagName("span")[0];
@@ -46,6 +47,8 @@ function init() {
         lists[i].setAttribute("disabled", false);
     }
     info_bar.innerHTML = "";
+
+    at_plus.setAttribute("disabled", false);
 }
 
 function disableOthers(element) {
@@ -92,9 +95,9 @@ function getNumber(element) {
         }
         request.open('GET', '/', 'true');
         request.send(null);
-        disableOthers(element);
         red.className = addClass(red, "success");
         red.textContent = "...";
+        disableOthers(element);
         getRequest(request, element);
     }
 }
@@ -113,56 +116,20 @@ function showSum() {
 }
 
 function oneByOne() {
-    clickA(clickB);
-}
+    var at_plus = document.getElementsByClassName("icon")[0];
+    at_plus.setAttribute("disabled", true);
 
-function clickA(callback) {
     var lists = document.getElementsByClassName("button");
-    lists[0].click();
-    if (typeof(callback) === "function")
-        callback(clickC);
-    
-}
-
-function clickB(callback) {
-    var lists = document.getElementsByClassName("button");
-    setTimeout(function() {
-        lists[1].click();
-        if (typeof(callback) === "function")
-            callback(clickD);
-    }, 3000);
-}
-
-function clickC(callback) {
-    var lists = document.getElementsByClassName("button");
-    setTimeout(function() {
-        lists[2].click();
-        if (typeof(callback) === "function")
-            callback(clickE);
-    }, 3000);
-}
-
-function clickD(callback) {
-    var lists = document.getElementsByClassName("button");
-    setTimeout(function() {
-        lists[3].click();
-        if (typeof(callback) === "function")
-            callback(clickInfo);
-    }, 3000);
-}
-
-function clickE(callback) {
-    var lists = document.getElementsByClassName("button");
-    setTimeout(function() {
-        lists[4].click();
-        if (typeof(callback) === "function")
-            callback();
-    }, 3000);
+    for (var i = 0; i < lists.length; ++i) {
+        lists[i].click();
+        enableOthers();
+    }
+    clickInfo();
 }
 
 function clickInfo() {
     var info_bar = document.getElementsByClassName("info")[0];
-    setTimeout(function() {
+    setInterval(function() {
         info_bar.click();
-    }, 3000);
+    }, 1000);
 }

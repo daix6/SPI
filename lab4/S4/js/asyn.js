@@ -113,6 +113,7 @@ function showSum() {
 }
 
 function oneByOne() {
+    var lists = document.getElementsByClassName("button");
     clickA(clickB);
 }
 
