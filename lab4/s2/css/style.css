@@ -1,0 +1,230 @@
+/* 初始化 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+li {
+    list-style: none;
+}
+
+/* 1rem = 16px */
+html {
+    font-size: 16px;
+}
+
+
+/* @+区域 */
+#at-plus-container {
+    position: fixed;
+    left: 45%;
+    bottom: 20%;
+
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    /* 为了判断@+区域 */
+}
+
+/* 为了其他内容的定位 */
+#bottom-positioner {
+    position: relative;
+}
+
+/* 三块区域，hover时以'#bottom-positioner'为基准摆位置 */
+#info-bar, #control-ring li, .apb {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    transition: all 1s;
+}
+
+.info {
+    width: 100%;
+    height: 100%;
+}
+
+/* 实现先收拢@+区域再回 */
+.apb {
+    background-color: rgba(0, 0, 0, 0.6);
+    transition-delay: 0.5s;
+}
+
+/* 列表内容样式 */
+#control-ring li {
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #1e967b;
+
+    opacity: 0;
+    /* 隐藏 */
+}
+
+/* 右上角圆圈部分 */
+#control-ring li span {
+    position: absolute;
+
+    width: 1rem;
+    height: 1rem;
+
+    left: 1.2rem;
+    top: -0.2rem;
+
+    border-radius: 50%;
+    background-color: red;
+    font-size: 0.8rem;
+    color: white;
+
+    opacity: 0;
+    /* 隐藏 */
+}
+
+/* @+按钮 */
+.apb .icon {
+    width: 100%;
+    height: 100%;
+    background: url(../assets/images/atplus_white.png) no-repeat center;
+    background-size: 80%;
+}
+
+/* 移至中心 */
+#at-plus-container:hover {
+
+    left: calc(45% - 7.5rem);
+    bottom: calc(20% - 7.5rem);
+
+    width: 15rem;
+    height: 15rem;
+
+}
+
+/* 作为基准  移到合适位置 */
+#at-plus-container:hover #bottom-positioner {
+    left: 7.5rem;
+    top: 5.5rem;
+}
+
+/* 上升！ */
+#at-plus-container:hover #info-bar {
+
+    left: -1.55rem;
+    top: -6.5rem;
+
+    width: 5rem;
+    height: 5rem;
+
+    background: rgba(0, 0, 0, 0.6);
+
+    transition: all 1s;
+}
+
+#at-plus-container:hover #info-bar:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#at-plus-container:hover .info {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    padding-top: 1rem;
+    color: rgb(78, 238, 148);
+}
+
+#at-plus-container:hover #control-ring li {
+    opacity: 1;
+    /* 列表 复现！ */
+
+    transition: all 1s;
+}
+
+#at-plus-container:hover #control-ring li:hover {
+    background-color: rgba(48, 63, 159, 1);
+}
+
+#at-plus-container:hover #control-ring li.disabled {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* 后台发出请求时 */
+#control-ring li span.success {
+    opacity: 1;
+    /* 红圆圈 复现！ */
+}
+
+/* 发散！ */
+
+#at-plus-container:hover .mask {
+    left: -3.2rem;
+    top: -2rem;
+
+    width: 2rem;
+    height: 2rem;
+
+    background: rgba(48, 63, 159, 0.8);
+}
+
+#at-plus-container:hover .history {
+    left: -4rem;
+    top: 0.3rem;
+
+    width: 2rem;
+    height: 2rem;
+
+    background: rgba(48,63,159,0.8);
+}
+
+#at-plus-container:hover .message {
+    left: -3rem;
+    top: 2.5rem;
+
+    width: 2rem;
+    height: 2rem;
+
+    background: rgba(48,63,159,0.8);
+}
+
+#at-plus-container:hover .setting {
+    left: -1rem;
+    top: 3.8rem;
+
+    width: 2rem;
+    height: 2rem;
+
+    background: rgba(48,63,159,0.8);
+}
+
+#at-plus-container:hover .sign {
+    left: 1.5rem;
+    top: 3.5rem;
+
+    width: 2rem;
+    height: 2rem;
+
+    background: rgba(48,63,159,0.8);
+}
+
+/* 变大！ */
+#at-plus-container:hover .apb {
+
+    transform: scale(1.5, 1.5);
+    background-color: rgba(48,63,159,1);
+
+    transition: all 1s;
+}
+
+#at-plus-container:hover .icon {
+
+    background-image: url(../assets/images/atplus_green.png);
+    background-size: 80%;
+}

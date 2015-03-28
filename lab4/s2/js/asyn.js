@@ -2,6 +2,7 @@
     var container = document.getElementById("at-plus-container");
     var lists = document.getElementsByClassName("button");
     var info_bar = document.getElementsByClassName("info")[0];
+    var at_plus = document.getElementsByClassName("icon")[0];
 
     init();
 
@@ -13,6 +14,7 @@
         }(i))
     }
     addEvent(info_bar, 'click', showSum);
+    addEvent(at_plus, 'click', oneByOne);
 }
 
 function getRequest(request, element) {
@@ -97,7 +99,6 @@ function getNumber(element) {
     }
 }
 
-
 function showSum() {
     if (allClicked()) {
         var sum = 0;
@@ -109,4 +110,60 @@ function showSum() {
         }
         info_bar.innerHTML = sum + "";
     }
+}
+
+function oneByOne() {
+    var lists = document.getElementsByClassName("button");
+    clickA(clickB);
+}
+
+function clickA(callback) {
+    var lists = document.getElementsByClassName("button");
+    lists[0].click();
+    if (typeof(callback) === "function")
+        callback(clickC);
+    
+}
+
+function clickB(callback) {
+    var lists = document.getElementsByClassName("button");
+    setTimeout(function() {
+        lists[1].click();
+        if (typeof(callback) === "function")
+            callback(clickD);
+    }, 3000);
+}
+
+function clickC(callback) {
+    var lists = document.getElementsByClassName("button");
+    setTimeout(function() {
+        lists[2].click();
+        if (typeof(callback) === "function")
+            callback(clickE);
+    }, 3000);
+}
+
+function clickD(callback) {
+    var lists = document.getElementsByClassName("button");
+    setTimeout(function() {
+        lists[3].click();
+        if (typeof(callback) === "function")
+            callback(clickInfo);
+    }, 3000);
+}
+
+function clickE(callback) {
+    var lists = document.getElementsByClassName("button");
+    setTimeout(function() {
+        lists[4].click();
+        if (typeof(callback) === "function")
+            callback();
+    }, 3000);
+}
+
+function clickInfo() {
+    var info_bar = document.getElementsByClassName("info")[0];
+    setTimeout(function() {
+        info_bar.click();
+    }, 3000);
 }
