@@ -141,6 +141,10 @@ html {
     color: rgb(78, 238, 148);
 }
 
+#at-plus-container:hover .info.sequence {
+    font-size: 1rem;
+}
+
 #at-plus-container:hover #control-ring li {
     opacity: 1;
     /* 列表 复现！ */

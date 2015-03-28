@@ -15,23 +15,7 @@
     }
     addEvent(info_bar, 'click', showSum);
     addEvent(at_plus, 'click', oneByOne);
-}
-
-function getRequest(request, element) {
-    if (request) {
-        var container = document.getElementById("at-plus-container");
-        if (!container.hasMouseleave) {
-            addEvent(container, 'mouseleave', reset(request));
-            container.hasMouseleave = true;
-        }
-    }
-}
-
-function reset(request) {
-    return function() {
-        request.abort();
-        init();
-    }
+    addEvent(container, 'mouseleave', init);
 }
 
 function init() {
@@ -95,7 +79,6 @@ function getNumber(element) {
         disableOthers(element);
         red.className = addClass(red, "success");
         red.textContent = "...";
-        getRequest(request, element);
     }
 }
 
@@ -104,66 +87,69 @@ function showSum() {
         var sum = 0;
         var info_bar = document.getElementsByClassName("info")[0];
         var lists = document.getElementsByClassName("button");
+        info_bar.className = removeClass(info_bar, "sequence");
+
         for (var i = 0; i < lists.length; ++i) {
             var span = lists[i].getElementsByTagName("span")[0];
             sum += parseInt(span.textContent);
         }
         info_bar.innerHTML = sum + "";
+        info_bar.setAttribute("disabled", true);
+        console.log("test");
+    }
+}
+
+function clickWhich(c) {
+    var lists = document.getElementsByClassName("button");
+    switch(c) {
+        case 'A':
+            lists[0].click();
+            break;
+        case 'B':
+            lists[1].click();
+            break;
+        case 'C':
+            lists[2].click();
+            break;
+        case 'D':
+            lists[3].click();
+            break;
+        case 'E':
+            lists[4].click();
+            break;
     }
 }
 
 function oneByOne() {
-    var lists = document.getElementsByClassName("button");
-    clickA(clickB);
-}
-
-function clickA(callback) {
-    var lists = document.getElementsByClassName("button");
-    lists[0].click();
-    if (typeof(callback) === "function")
-        callback(clickC);
-    
-}
-
-function clickB(callback) {
-    var lists = document.getElementsByClassName("button");
-    setTimeout(function() {
-        lists[1].click();
-        if (typeof(callback) === "function")
-            callback(clickD);
-    }, 3000);
-}
-
-function clickC(callback) {
-    var lists = document.getElementsByClassName("button");
-    setTimeout(function() {
-        lists[2].click();
-        if (typeof(callback) === "function")
-            callback(clickE);
-    }, 3000);
-}
-
-function clickD(callback) {
-    var lists = document.getElementsByClassName("button");
-    setTimeout(function() {
-        lists[3].click();
-        if (typeof(callback) === "function")
-            callback(clickInfo);
-    }, 3000);
-}
-
-function clickE(callback) {
-    var lists = document.getElementsByClassName("button");
-    setTimeout(function() {
-        lists[4].click();
-        if (typeof(callback) === "function")
-            callback();
-    }, 3000);
-}
-
-function clickInfo() {
+    var origin = ['A', 'B', 'C', 'D', 'E'];
+    var sequence = origin.sort(randomSort);
     var info_bar = document.getElementsByClassName("info")[0];
+    info_bar.className = addClass(info_bar, "sequence");
+
+    for (var i = 0; i < sequence.length; ++i)
+        info_bar.innerHTML += sequence[i] + "";
+
+    clickWhich(sequence[0]);
     setTimeout(function() {
-        info_bar.click();
+        clickWhich(sequence[1]);
     }, 3000);
+    setTimeout(function() {
+        clickWhich(sequence[2]);
+    }, 6000);
+    setTimeout(function() {
+        clickWhich(sequence[3]);
+    }, 9000);
+    setTimeout(function() {
+        clickWhich(sequence[4]);
+    }, 12000);
+    var x = setInterval(function() {
+        info_bar.click();
+    }, 1000);
+    setTimeout(function() {
+        clearInterval(x);
+    }, 16000);
+}
+
+function randomSort(a, b) {
+    return Math.random() > 0.5 ? -1 : 1;
 }
