@@ -1,3 +1,7 @@
+# @   this
+# @@  constructor
+# @@@ this.constructor
+
 # 定义按钮类
 class Button
     # 存放所有的button
@@ -8,14 +12,17 @@ class Button
         # for循环就得有个 [] 
         [button.disable! for button in @buttons when button isnt current-button and button.state isnt 'done']
 
+    # 类方法
     @enable-other-buttons = (current-button) ->
         [button.enable! for button in @buttons when button isnt current-button and button.state isnt 'done' ]
 
+    # 类方法
     @all-button-got-number = ->
         [return false for button in @buttons when button.state isnt 'done']
         $ '#info-bar' .remove-class 'disabled' .add-class 'enabled'
         return true
-    # 用以reset~
+    
+    # 类方法，用以reset~
     @reset-all-buttons = ->
         [button.reset! for button in @buttons]
 
@@ -25,13 +32,14 @@ class Button
         @request # 用以存放 $.get 对象
         # bound methods, which have their definition of `this` bound to the instance
         @dom.click !~> if @state is 'enabled'
-            # ! 立即执行
+            # ! 在箭头前表示没有返回值
+            # ! 在定义了的函数后代表执行
             @@@disable-other-buttons @ # 传入当前button
             @wait! # wait with "..."
             @get-number-and-show! # 显示拿到的数
         @@@buttons.push @ # 把当前button push到@buttons数组
 
-    # 以下是实例方法，!-> 代表没有返回值
+    # 以下是实例方法
     get-number-and-show: !->
         # 如果这里写 !-> this是Object
         # 变成!~>的话，在这行增加 var this$ = this
@@ -86,7 +94,7 @@ $ ->
     s1-waiting-user-click!
 
 add-click-to-get-number-with-ajax-to-all-numbers = ->
-    for let btn in $ '#control-ring .button'
+    for btn in $ '#control-ring .button'
         # 为什么$(btn)？因为jQuery的get方法只有jQuery对象能用，所以加$
         button = new Button $(btn), (number)!->
             calcuator.add number

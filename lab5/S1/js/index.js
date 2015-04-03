@@ -117,10 +117,10 @@
   addClickToGetNumberWithAjaxToAllNumbers = function(){
     var i$, ref$, len$, results$ = [];
     for (i$ = 0, len$ = (ref$ = $('#control-ring .button')).length; i$ < len$; ++i$) {
-      results$.push((fn$.call(this, ref$[i$])));
+      results$.push((fn$.call(this, i$, ref$[i$])));
     }
     return results$;
-    function fn$(btn){
+    function fn$(i, btn){
       var button;
       return button = new Button($(btn), function(number){
         calcuator.add(number);
