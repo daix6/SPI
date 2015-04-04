@@ -21,7 +21,7 @@ class Button
         [return false for button in @buttons when button.state isnt 'done']
         $ '#info-bar' .remove-class 'disabled' .add-class 'enabled'
         return true
-    
+
     # 类方法，用以reset~
     @reset-all-buttons = ->
         [button.reset! for button in @buttons]
@@ -99,6 +99,9 @@ robot =
         next = @sequence[@current].char-code-at! - 'A'.char-code-at!
         @current++
         return @buttons[next]
+    click-all: !->
+        [(button.click!; Button.enable-other-buttons button; @current++) for button in @buttons]
+        @click-next!
 
 reset = !->
     big-bubble = $ '#info-bar'
@@ -115,7 +118,7 @@ $ ->
     add-reset-to-leave-at-plus-area!
 
     s1-waiting-user-click!
-    s2-click-atplus-and-robot-click-from-a-to-e-then-show-sum!
+    s3-click-atplus-and-robot-click-all-buttons-then-show-sum!
 
 add-click-to-get-number-with-ajax-to-all-numbers = ->
     for btn in $ '#control-ring .button'
@@ -137,7 +140,7 @@ add-reset-to-leave-at-plus-area = !->
 s1-waiting-user-click = !->
     console.log "wait user click..."
 
-s2-click-atplus-and-robot-click-from-a-to-e-then-show-sum = ->
+s3-click-atplus-and-robot-click-all-buttons-then-show-sum = ->
     robot.init!
     $ '#button .apb' .click !->
-        robot.click-next!
+        robot.click-all!

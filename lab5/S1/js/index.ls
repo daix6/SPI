@@ -43,7 +43,8 @@ class Button
     get-number-and-show: !->
         # 如果这里写 !-> this是Object
         # 变成!~>的话，在这行增加 var this$ = this
-        @request = $.get '/', (number) !~>
+        # random: 分开url地址，方便拿数...
+        @request = $.get '/'+Math.random!, (number) !~>
             # 拿到数后回调
             @done!
             @@@all-button-got-number!
