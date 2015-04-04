@@ -104,15 +104,18 @@ html {
 #at-plus-container:hover #info-bar:hover {
   background-color: #303f9f;
 }
-#at-plus-container:hover #info-bar.disabled {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-#at-plus-container:hover .info {
+#at-plus-container:hover #info-bar .info {
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
   padding-top: 1rem;
   color: #4eee94;
+}
+#at-plus-container:hover #info-bar.disabled {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+#at-plus-container:hover #info-bar.disabled .info {
+  font-size: 1rem;
 }
 #at-plus-container:hover #control-ring li {
   opacity: 1;
@@ -175,7 +178,7 @@ html {
   background-color: #303f9f;
   transition: all 1s;
 }
-#at-plus-container:hover .icon {
+#at-plus-container:hover .apb .icon {
   background-image: url(../assets/images/atplus_green.png);
   background-size: 80%;
 }

@@ -93,9 +93,11 @@ robot =
         @sequence = ['A' to 'E']
         @current = 0
     shuffle-order: !->
-        @sequence.sort -> Math.random! > 0.5 ? -1 : 1
+        @sequence.sort -> if Math.random! > 0.5 then -1 else 1
     show-order: !->
-
+        order = ''
+        [order += i for i in @sequence]
+        @big-bubble.find '.info' .text order
     click-next: !->
         if @current is @sequence.length then @big-bubble.click! else
             @get-next-button! .click!

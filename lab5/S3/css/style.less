@@ -122,18 +122,18 @@ html {
             &:hover {
                 background-color: rgba(48, 63, 159, 1);
             }
+
+            .info {
+                text-align: center;
+                font-size: 2rem;
+                font-weight: bold;
+                padding-top: 1rem;
+                color: rgb(78, 238, 148);
+            }
         }
 
         #info-bar.disabled {
             background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .info {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: bold;
-            padding-top: 1rem;
-            color: rgb(78, 238, 148);
         }
 
         #control-ring {
@@ -218,12 +218,14 @@ html {
             background-color: rgba(48, 63, 159, 1);
 
             transition: all 1s;
+
+            .icon {
+                background-image: url(../assets/images/atplus_green.png);
+                background-size: 80%;
+            }
         }
 
-        .icon {
-            background-image: url(../assets/images/atplus_green.png);
-            background-size: 80%;
-        }
+        
 
     }
 }

@@ -175,7 +175,7 @@ html {
   background-color: #303f9f;
   transition: all 1s;
 }
-#at-plus-container:hover .icon {
+#at-plus-container:hover .apb .icon {
   background-image: url(../assets/images/atplus_green.png);
   background-size: 80%;
 }
