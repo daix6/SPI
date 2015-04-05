@@ -61,7 +61,7 @@
     }
     prototype.getNumberAndShow = function(){
       var this$ = this;
-      this.request = $.get('/', function(number){
+      this.request = $.get('/' + Math.random(), function(number){
         this$.done();
         this$.constructor.allButtonGotNumber();
         this$.constructor.enableOtherButtons(this$);
@@ -166,6 +166,7 @@
     return bigBubble.click(function(){
       if (bigBubble.hasClass('enabled')) {
         bigBubble.find('.info').text(calcuator.sum);
+        bigBubble.addClass('disabled');
       }
     });
   };

@@ -21,15 +21,16 @@ class Button
         [return false for button in @buttons when button.state isnt 'done']
         $ '#info-bar' .remove-class 'disabled' .add-class 'enabled'
         return true
-    
+
     # 类方法，用以reset~
     @reset-all-buttons = ->
         [button.reset! for button in @buttons]
 
     # 构造子
-    (@dom, @callback) ->
+    (@dom, @good-msg, @bad-msg, @callback) ->
         @state = 'enabled' # 状态...
         @request # 用以存放 $.get 对象
+        @name = @dom .text!
         # bound methods, which have their definition of `this` bound to the instance
         @dom.click !~> if @state is 'enabled'
             # ! 在箭头前表示没有返回值
@@ -48,12 +49,22 @@ class Button
             # 拿到数后回调
             @done!
             @@@all-button-got-number!
-            @callback number # 将值存到calculator当中
             @@@enable-other-buttons @
             @show-number number
+            @exception-handler number # 产不产生异常呢？0.0
 
     show-number: (number) !->
         @dom.find '.unread' .text number
+
+    show-message: !->
+        $ '#message' .text "#{@name}: #{@good-msg}"
+
+    exception-handler: (number) !->
+        if Math.random! > 0.5
+            @show-message!
+            @callback error = null, number
+        else
+            @callback message: @bad-msg, data: number # 传了一个对象进去 error:{message, data}
 
     disable: !->
         @state = 'disabled'
@@ -86,6 +97,38 @@ calcuator =
     reset: !->
         @sum = 0
 
+robot = 
+    init: !->
+        @buttons = $ '#control-ring .button'
+        @big-bubble = $ '#info-bar'
+        @sequence = ['A' to 'E']
+        @current = 0
+    shuffle-order: !->
+        @sequence.sort -> if Math.random! > 0.5 then -1 else 1
+    show-order: !->
+        order = ''
+        [order += i for i in @sequence]
+        @big-bubble.find '.info' .text order
+    click-next: !->
+        if @current is @sequence.length then @big-bubble.click! else
+            @get-next-button! .click!
+    get-next-button: ->
+        next = @sequence[@current].char-code-at! - 'A'.char-code-at!
+        @current++
+        return @buttons[next]
+    click-all: !->
+        [(button.click!; Button.enable-other-buttons button; @current++) for button in @buttons]
+        @click-next!
+
+reset = !->
+    big-bubble = $ '#info-bar'
+    calcuator.reset!
+    robot.init!
+    Button.reset-all-buttons!
+    big-bubble.remove-class 'enabled' .add-class 'disabled'
+    big-bubble.find '.info' .text ''
+    $ '#message' .text ''
+
 # 类似window.onload ...
 $ ->
     add-click-to-get-number-with-ajax-to-all-numbers!
@@ -93,12 +136,20 @@ $ ->
     add-reset-to-leave-at-plus-area!
 
     s1-waiting-user-click!
+    s5-independent-behavior!
 
 add-click-to-get-number-with-ajax-to-all-numbers = ->
-    for btn in $ '#control-ring .button'
+    good-msg = ['这是个天大的秘密', '我不知道', '你不知道', '他不知道', '才怪']
+    bad-msg = ['这不是个天大的秘密', '我知道', '你知道', '他知道', '才怪个鬼']
+    # let 实现闭包...因为在回调那儿用到了button.name~
+    for let btn, i in $ '#control-ring .button'
         # 为什么$(btn)？因为jQuery的get方法只有jQuery对象能用，所以加$
-        button = new Button $(btn), (number)!->
+        button = new Button $(btn), good-msg[i], bad-msg[i], (error, number)!->
+            if error
+                $ '#message' .text "Error! #{button.name}: #{error.message}"
+                number = error.data
             calcuator.add number
+            if robot.current isnt 0 then robot.click-next!
 
 add-click-to-calculate-sum-of-all-buttons-and-show = ->
     big-bubble = $ '#info-bar'
@@ -106,17 +157,19 @@ add-click-to-calculate-sum-of-all-buttons-and-show = ->
     big-bubble.click !-> if big-bubble.has-class 'enabled'
         big-bubble.find '.info' .text calcuator.sum
         big-bubble.add-class 'disabled'
+        $ '#message' .text "楼主异步调用战斗力感人，目测不超过"+calcuator.sum
+
 
 add-reset-to-leave-at-plus-area = !->
     $ '#at-plus-container' .on 'mouseleave' !->
             reset!
 
-reset = !->
-    big-bubble = $ '#info-bar'
-    calcuator.reset!
-    Button.reset-all-buttons!
-    big-bubble.remove-class 'enabled' .add-class 'disabled'
-    big-bubble.find '.info' .text ''
-
 s1-waiting-user-click = !->
     console.log "wait user click..."
+
+s5-independent-behavior = ->
+    robot.init!
+    $ '#button .apb' .click !->
+        robot.shuffle-order!
+        robot.show-order!
+        robot.click-next!

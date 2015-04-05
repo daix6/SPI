@@ -61,7 +61,7 @@
     }
     prototype.getNumberAndShow = function(){
       var this$ = this;
-      this.request = $.get('/', function(number){
+      this.request = $.get('/' + Math.random(), function(number){
         this$.done();
         this$.constructor.allButtonGotNumber();
         this$.callback(number);
@@ -115,16 +115,14 @@
     return s1WaitingUserClick();
   });
   addClickToGetNumberWithAjaxToAllNumbers = function(){
-    var i$, ref$, len$, results$ = [];
+    var i$, ref$, len$, btn, button, results$ = [];
     for (i$ = 0, len$ = (ref$ = $('#control-ring .button')).length; i$ < len$; ++i$) {
-      results$.push((fn$.call(this, i$, ref$[i$])));
+      btn = ref$[i$];
+      results$.push(button = new Button($(btn), fn$));
     }
     return results$;
-    function fn$(i, btn){
-      var button;
-      return button = new Button($(btn), function(number){
-        calcuator.add(number);
-      });
+    function fn$(number){
+      calcuator.add(number);
     }
   };
   addClickToCalculateSumOfAllButtonsAndShow = function(){
@@ -134,6 +132,7 @@
     return bigBubble.click(function(){
       if (bigBubble.hasClass('enabled')) {
         bigBubble.find('.info').text(calcuator.sum);
+        bigBubble.addClass('disabled');
       }
     });
   };

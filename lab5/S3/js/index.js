@@ -176,6 +176,7 @@
     return bigBubble.click(function(){
       if (bigBubble.hasClass('enabled')) {
         bigBubble.find('.info').text(calcuator.sum);
+        bigBubble.addClass('disabled');
       }
     });
   };

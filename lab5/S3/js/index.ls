@@ -132,6 +132,7 @@ add-click-to-calculate-sum-of-all-buttons-and-show = ->
     big-bubble.add-class 'disabled'
     big-bubble.click !-> if big-bubble.has-class 'enabled'
         big-bubble.find '.info' .text calcuator.sum
+        big-bubble.add-class 'disabled'
 
 add-reset-to-leave-at-plus-area = !->
     $ '#at-plus-container' .on 'mouseleave' !->

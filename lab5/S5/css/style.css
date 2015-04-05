@@ -75,7 +75,7 @@ html {
   top: -0.2rem;
   border-radius: 50%;
   background-color: red;
-  font-size: 0.8rem;
+  font-size: 0.5rem;
   color: white;
   opacity: 0;
   /* 隐藏 */
@@ -92,6 +92,15 @@ html {
   left: 7.5rem;
   top: 5.5rem;
 }
+#at-plus-container:hover #message {
+  /* 上升在#info-bar的上面 */
+  position: absolute;
+  left: -9rem;
+  top: -9.5rem;
+  min-width: 20rem;
+  text-align: center;
+  color: red;
+}
 #at-plus-container:hover #info-bar {
   /* 上升！ */
   left: -1.55rem;
@@ -104,15 +113,18 @@ html {
 #at-plus-container:hover #info-bar:hover {
   background-color: #303f9f;
 }
-#at-plus-container:hover #info-bar.disabled {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-#at-plus-container:hover .info {
+#at-plus-container:hover #info-bar .info {
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
   padding-top: 1rem;
   color: #4eee94;
+}
+#at-plus-container:hover #info-bar.disabled {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+#at-plus-container:hover #info-bar.disabled .info {
+  font-size: 1rem;
 }
 #at-plus-container:hover #control-ring li {
   opacity: 1;
