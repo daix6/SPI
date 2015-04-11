@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    div.container
+        div.row
+            div.col-md-2
+            div.col-md-8
+                h1.text-center.login-title #{homework.title}
+                ul
+                    li #{homework.description}
+                    li #{homework.deadline}
+                    li #{outOfDate}
+            div.col-md-2

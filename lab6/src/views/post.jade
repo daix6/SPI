@@ -9,7 +9,7 @@ block content
                     | 老师你走错地方了喔~
                 if user.identity == "0"
                     h1.text-center 提交作业，请填写作业信息
-                    form(class='form-signin', action='/signup', method='POST')
+                    form(class='form-signin', action='/post', method='POST')
                         input(type='text', name='title', class='form-control', placeholder='作业名', required, autofocus)
                         input(type='text', name='description', class='form-control', placeholder='描述')
                         button(class='btn btn-lg btn-primary btn-block', type='submit') 提交
