@@ -51,22 +51,21 @@ block content
                                         td
                                             | #{homework.studentName}
                                         td
-                                            #{homework.postTime}
+                                            | #{homework.postTime}
                                         td
                                             a(href="/assignments/#{assignment._id}/#{homework._id}") #{homework.text.slice(0, 20)}
                                         td
                                             if user._id == assignment.teacherId
                                                 if homework.grade >= 0
-                                                    #{homework.grade}
+                                                    | #{homework.grade}
                                                 else
                                                     form(action='/grade', method='post')
                                                         input(type="number", name="grade", placeholder="请评分")
-                                                        input(type='hidden', name='assignment_id', value='#{assignment._id}')
-                                                        input(type='hidden', name='assignment_title', value='#{assignment.title}')
-                                                        button(class='btn btn-primary btn-block', type='submit') 评分
+                                                        input(type='hidden', name='homework_id', value='#{homework._id}')
+                                                        button(class='btn btn-primary', type='submit') 评分
                                             else
                                                 if homework.grade >= 0
-                                                    #{homework.grade}
+                                                    | #{homework.grade}
                                                 else
                                                     | 尚未评分
             div.col-md-2

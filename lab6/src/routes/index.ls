@@ -91,12 +91,14 @@ module.exports = (passport)->
           if err
             console.log "保存作业时出错"
 
-    Homework.find-one {assignmentId: req.param "assignment_id", studentId: req.user._id}, (err, doc)!->
+    Homework.find-one {assignmentId: req.param("assignment_id"), studentId: req.user._id}, (err, doc)!->
       if err
         console.log "跳转到作业页面出错！", err
       res.redirect "/assignments/" + doc.assignmentId + "/" + doc._id
 
-  router.post "grade", is-authenticated, (req, res)!->
-    Homework.find-one {assignmentId: req.param "assignment_id", studentId: req.user._id}, (err, doc)!->
-      Homework.update {_id: doc._id}, {$set: {grade: req.param.grade}}
-      res.location "/"
+  router.post "/grade", is-authenticated, (req, res)!->
+    console.log req.param "homework_id"
+    Homework.update {_id: req.param "homework_id"}, {$set: {grade: req.param "grade"}}, (err)->
+      if err
+        console.log "err", err
+      res.redirect "/assignments/" + doc.assignmentId
