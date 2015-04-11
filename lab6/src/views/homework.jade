@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    div.container
+        div.row
+            div.col-md-2
+            div.col-md-8
+                h2.text-center #{homework.assignmentTitle}
+                h3.text-center #{homework.studentName}
+                h3.text-center #{homework.postTime}
+                if homework.grade < 0
+                    h3.text-center 尚未评分
+                else
+                    h3.text-center #{homework.grade}
+                h4.text-center #{homework.text}
+            div.col-md-2
