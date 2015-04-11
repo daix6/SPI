@@ -17,7 +17,8 @@ module.exports = (passport)!-> passport.use 'signup',  new LocalStrategy pass-re
       email     : req.param 'email'
       firstName : req.param 'firstName'
       lastName  : req.param 'lastName'
-    } 
+      identity  : req.param 'identity'
+    }
     new-user.save (error)->
       if error
         console.log "Error in saving user: ", error
