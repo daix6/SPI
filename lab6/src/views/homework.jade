@@ -5,9 +5,9 @@ block content
         div.row
             div.col-md-2
             div.col-md-8
-                h2.text-center #{homework.assignmentTitle}
-                h3.text-center #{homework.studentName}
-                h3.text-center #{homework.postTime}
+                h2.text-center 标题：#{homework.assignmentTitle}
+                h3.text-center 姓名：#{homework.studentName}
+                h3.text-center 提交时间：#{new Date(parseInt(homework.postTime))}
                 if homework.grade < 0
                     h3.text-center 尚未评分
                 else

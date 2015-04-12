@@ -8,7 +8,7 @@ block content
                 h2.text-center #{assignment.title}
 
                 h3.text-center #{assignment.description}
-                h3.text-center #{assignment.deadline}
+                h3.text-center DDL：#{new Date(parseInt(assignment.deadline))}
 
                 if user.identity == "1"
                     if outOfDate

@@ -29,7 +29,7 @@ module.exports = (passport)->
     new-assignment = new Assignment!
     new-assignment.title = req.param "title"
     new-assignment.description = req.param "description"
-    new-assignment.deadline = Date.parse new Date req.param "deadline".replace("T")
+    new-assignment.deadline = (new Date (req.param "deadline" .replace("T", " "))).valueOf!
     new-assignment.teacherId = req.user._id
     new-assignment.save (err)->
       if err
@@ -61,44 +61,44 @@ module.exports = (passport)->
         if err
           console.log "找不到这个id的作业"
         else
-          Homework.find {assignmentId: assignment-id} (err, all-homeworks)!->
+          Homework.find {assignmentId: assignment-id}, (err, all-homeworks)!->
             if err
               console.log "拿所有作业时错误"
-            out-of-date = false
+            out-of-date = if doc.deadline <= Date.now! then true else false
             res.render "singleAss", {assignment: doc, homeworks: all-homeworks, user: req.user, out-of-date: out-of-date}
     else
-      console.log "here"
-      console.log req.params.hwid
       Homework.find-one {_id: req.params.hwid}, (err, doc)!->
         if err
           console.log "拿出作业时错误"
         res.render "homework", {homework: doc, user: req.user}
 
   router.post "/post", is-authenticated, (req, res)!->
-    Homework.find-one {assignmentId: req.param "assignment_id", studentId: req.user._id}, (err, doc)!->
+    Homework.find-one {assignmentId: req.param("assignment_id"), studentId: req.user._id}, (err, doc)!->
       if doc
-        Homework.update {_id: doc._id}, {$set: {text: req.param("hw"), postDate: Date.parse(new Date!), grade: -1}}, (err)!->
+        Homework.update {_id: doc._id}, {$set: {text: req.param("hw"), postTime: Date.now!, grade: -1}}, (err)!->
           if err
             console.log "更新作业时发生错误"
+          else
+            res.redirect "/assignments/" + doc.assignmentId + "/" + doc._id
       else
         new-homework = new Homework!
         new-homework.assignmentId = req.param "assignment_id"
         new-homework.assignmentTitle = req.param "assignment_title"
         new-homework.studentId = req.user._id
         new-homework.studentName = req.user.lastName + req.user.firstName
-        new-homework.text = req.param "text"
+        new-homework.text = req.param "hw"
         new-homework.save (err)->
           if err
             console.log "保存作业时出错"
-
-    Homework.find-one {assignmentId: req.param("assignment_id"), studentId: req.user._id}, (err, doc)!->
-      if err
-        console.log "跳转到作业页面出错！", err
-      res.redirect "/assignments/" + doc.assignmentId + "/" + doc._id
+          else
+            Homework.find-by-id new-homework, (err, this-homework)!->
+              res.redirect "/assignments/" + this-homework.assignmentId + "/" + this-homework._id
 
   router.post "/grade", is-authenticated, (req, res)!->
-    console.log req.param "homework_id"
     Homework.update {_id: req.param "homework_id"}, {$set: {grade: req.param "grade"}}, (err)->
       if err
         console.log "err", err
-      res.redirect "/assignments/" + doc.assignmentId
+      Homework.find-by-id req.param("homework_id"), (err, doc)!->
+        if err !->
+        else
+          res.redirect "/assignments" + doc.assignmentId + "/" + doc._id

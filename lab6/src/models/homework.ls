@@ -8,7 +8,7 @@ module.exports = mongoose.model 'Homework', {
     text: String,
     postTime: {
         type: String,
-        'default': Date.parse new Date!
+        'default': Date.now!
     },
     grade: {
         type: Number,
