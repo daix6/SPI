@@ -8,7 +8,7 @@ block content
                 h2.text-center #{assignment.title}
 
                 h3.text-center #{assignment.description}
-                h3.text-center DDL：#{new Date(parseInt(assignment.deadline))}
+                h3.text-center 截止日期：#{new Date(parseInt(assignment.deadline))}
 
                 if user.identity == "1"
                     if outOfDate
@@ -27,6 +27,17 @@ block content
                             p 截止日期已到，可以批改作业啦！
                         else
                             p 还没到截止日期~
+                        form(action='/modify', method='post')
+                            if !outOfDate
+                                input(type='text', name='change_description', class='form-control', placeholder='更改作业要求', required)
+                            input(type='datetime-local', name='deadline', class='form-control', placeholder='截止日期', required)
+                            input(type='hidden', name='assignment_id', value='#{assignment._id}')
+                            button(class='btn btn-primary', type='submit') 提交
+                            if !outOfDate
+                                p 点击提交修改作业要求与截止日期
+                            else
+                                p 修改截止日期
+
                     else
                         if outOfDate
                             p 截止日期已到。
@@ -43,7 +54,7 @@ block content
                                 tr
                                     th 学生姓名
                                     th 提交时间
-                                    th 作业内容
+                                    th 作业链接
                                     th 分数
                             tbody
                                 each homework in homeworks
@@ -51,7 +62,7 @@ block content
                                         td
                                             | #{homework.studentName}
                                         td
-                                            | #{homework.postTime}
+                                            | #{new Date(parseInt(homework.postTime))}
                                         td
                                             a(href="/assignments/#{assignment._id}/#{homework._id}") #{homework.text.slice(0, 20)}
                                         td

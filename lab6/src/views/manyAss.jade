@@ -20,7 +20,7 @@ block content
                         each assign in assignments
                             a.list-group-item(href='/assignments/#{assign._id}')
                                 ul 
-                                    li #{assign.title}
-                                    li #{assign.description}
-                                    li #{assign.deadline}
+                                    li 题目：#{assign.title}
+                                    li 要求：#{assign.description}
+                                    li 截止日期：#{new Date(parseInt(assign.deadline))}
             div.col-md-2

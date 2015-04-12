@@ -99,6 +99,22 @@ module.exports = (passport)->
       if err
         console.log "err", err
       Homework.find-by-id req.param("homework_id"), (err, doc)!->
-        if err !->
+        if err
+          console.log err
         else
           res.redirect "/assignments" + doc.assignmentId + "/" + doc._id
+
+  router.post "/modify", is-authenticated, (req, res)!->
+    if req.param "change_description"
+      Assignment.update {_id: req.param "assignment_id"}, {$set: {description: req.param "change_description"}}, (err) !->
+        if err
+          console.log err
+    if req.param "deadline"
+      Assignment.update {_id: req.param "assignment_id"}, {$set: {deadline: (new Date (req.param "deadline" .replace("T", " "))).valueOf!}}, (err) !->
+        if err
+          console.log err
+    Assignment.find-by-id req.param("assignment_id"), (err, doc)!->
+      if err
+        console.log err
+      else 
+        res.redirect "/assignments" + "/" + doc._id
