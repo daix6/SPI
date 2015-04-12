@@ -30,13 +30,13 @@ block content
                         form(action='/modify', method='post')
                             if !outOfDate
                                 input(type='text', name='change_description', class='form-control', placeholder='更改作业要求', required)
-                            input(type='datetime-local', name='deadline', class='form-control', placeholder='截止日期', required)
+                            input(type='datetime-local', name='deadline', class='form-control', placeholder='截止日期')
                             input(type='hidden', name='assignment_id', value='#{assignment._id}')
                             button(class='btn btn-primary', type='submit') 提交
                             if !outOfDate
                                 p 点击提交修改作业要求与截止日期
                             else
-                                p 修改截止日期
+                                p 点击提交修改截止日期
 
                     else
                         if outOfDate

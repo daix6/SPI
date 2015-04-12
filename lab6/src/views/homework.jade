@@ -11,6 +11,7 @@ block content
                 if homework.grade < 0
                     h3.text-center 尚未评分
                 else
-                    h3.text-center #{homework.grade}
-                h4.text-center #{homework.text}
+                    h3.text-center 分数：#{homework.grade}
+                h4 作业内容：
+                p #{homework.text}
             div.col-md-2

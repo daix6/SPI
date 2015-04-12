@@ -102,7 +102,7 @@ module.exports = (passport)->
         if err
           console.log err
         else
-          res.redirect "/assignments" + doc.assignmentId + "/" + doc._id
+          res.redirect "/assignments" + "/" + doc.assignmentId + "/" + doc._id
 
   router.post "/modify", is-authenticated, (req, res)!->
     if req.param "change_description"
