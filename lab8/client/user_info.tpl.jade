@@ -1,0 +1,21 @@
+if user
+  .col-sm-2
+    .dropdown.user-info
+      if user.identity = 'Student'
+        button.student.btn.dropdown-toggle#userInfo(type='button' data-toggle='dropdown') #{user.name}
+          span.caret
+      else
+        button.teacher.btn.dropdown-toggle#userInfo(type='button' data-toggle='dropdown') #{user.name}
+          span.caret
+      ul.dropdown-menu(role='menu' aria-labelledby='userInfo')
+        li(role='presentation')
+          a(role='menuitem' tabindex='-1' href='#') 用户名：#{user.username}
+        li(role='presentation')
+          a(role='menuitem' tabindex='-1' href='#') 邮箱：#{user.email}
+        li(role='presentation')
+          if user.identity = 'Student'
+            a(role='menuitem' tabindex='-1' href='#') 身份：学生
+          else if user.identity = 'Teacher'
+            a(role='menuitem' tabindex='-1' href='#') 身份：教师
+        li(role='presentation')
+          a.signout(role='menuitem' tabindex='-1' href='#') 登出

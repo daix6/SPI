@@ -44,8 +44,8 @@ if Meteor.is-client
             $ (".form_register")  .css "display" "none"
 
     'click .signout': (ev, tpl) ->
+        Session.set "current-user" undefineds
         $(".form_signup") .css "display" "block"
         $ (".form_register")  .css "display" "none"
         $ "input" .val ""
-        Session.set "current-user" undefined
   }
