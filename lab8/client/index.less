@@ -1,0 +1,19 @@
+.color (@font: transparent, @back: transparent, @border: transparent) {
+    color: @font !important;
+    background-color: @back !important;
+    border-color: @border;
+}
+
+body {
+    .color(#fb5, #334);
+    font-family: "Hiragino Sans GB", "Microsoft YaHei", tahoma, arial;
+
+    h2 {
+        margin-top: 3rem;
+        margin-bottom: 5rem;
+    }
+
+    form.form_register {
+        display: none;
+    }
+}

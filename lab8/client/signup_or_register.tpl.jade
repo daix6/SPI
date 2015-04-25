@@ -1,0 +1,51 @@
+form.form_signup.form-horizontal
+  .form-group
+      label.col-sm-2.control-label(for='username') 用户名
+      .col-sm-10
+        input.form-control(type='text' name='log_username'  id='username' placeholder='用户名' required)
+
+  .form-group
+      label.col-sm-2.control-label(for='password') 密码
+      .col-sm-10
+        input.form-control(type='password' name='log_password'  id='password' placeholder='密码' required)
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      .btn.btn-primary.signup_login 登录
+      a.btn.btn-link.col-sm-offset-1.signup_register(href="#signup") 没有账号 立即注册
+
+form.form_register.form-horizontal(data-parsley-validate)
+  .form-group
+    label.col-sm-2.control-label(for='username') 用户名
+    .col-sm-10
+      input.form-control(type='text' name='username'  id='username' placeholder='用户名' required)
+
+  .form-group
+    label.col-sm-2.control-label(for='password') 密码
+    .col-sm-10
+      input.form-control(type='password' name='password'  id='password' placeholder='密码' required)
+
+  .form-group
+    label.col-sm-2.control-label(for='name') 姓名
+    .col-sm-10
+      input.form-control(type='text' name='name' placeholder='姓名'  id='name' required)
+
+  .form-group
+      label.col-sm-2.control-label(for='email') 邮箱
+      .col-sm-10
+        input.form-control(type='email' name='email' placeholder='邮箱'  id='email'  required)
+
+  .form-group
+    label.col-sm-2.control-label 身份
+    .col-sm-10
+      label.radio-inline
+        input(type='radio' name='identity' id='Student' value='Student')
+        | 教师
+      label.radio-inline
+        input(type='radio' name='identity'  id='Teacher' value='Teacher')
+        | 学生
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      .btn.btn-primary.register_register 注册
+      a.btn.btn-link.col-sm-offset-1.register_signup(href="/") 已有账号 直接登录

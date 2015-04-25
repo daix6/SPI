@@ -7,5 +7,8 @@ root.Homework = new Mongo.Collection 'Homework'
 Meteor.methods {}
 
 Router.route '/', ->
+    $(".form_signup") .css "display" "block"
+    $ (".form_register")  .css "display" "none"
 
-Meteor.startup ->
+Meteor.startup -> if Meteor.is-client
+  $ 'form[data-parsley-validate]' .parsley!
