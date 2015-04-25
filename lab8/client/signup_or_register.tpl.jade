@@ -1,51 +1,73 @@
+if user
+  .col-sm-11
+    .dropdown
+      if user.identity = 'Student'
+        button.student.btn.dropdown-toggle#userInfo(type='button' data-toggle='dropdown') #{user.name}
+          span.caret
+      else
+        button.teacher.btn.dropdown-toggle#userInfo(type='button' data-toggle='dropdown') #{user.name}
+          span.caret
+      ul.dropdown-menu(role='menu' aria-labelledby='userInfo')
+        li(role='presentation')
+          a(role='menuitem' tabindex='-1' href='#') 用户名：#{user.username}
+        li(role='presentation')
+          a(role='menuitem' tabindex='-1' href='#') 邮箱：#{user.email}
+        li(role='presentation')
+          if user.identity = 'Student'
+            a(role='menuitem' tabindex='-1' href='#') 身份：学生
+          else if user.identity = 'Teacher'
+            a(role='menuitem' tabindex='-1' href='#') 身份：教师
+        li(role='presentation')
+          a.signout(role='menuitem' tabindex='-1' href='#') 登出
+
 form.form_signup.form-horizontal
   .form-group
       label.col-sm-2.control-label(for='username') 用户名
-      .col-sm-10
+      .col-sm-8
         input.form-control(type='text' name='log_username'  id='username' placeholder='用户名' required)
 
   .form-group
       label.col-sm-2.control-label(for='password') 密码
-      .col-sm-10
+      .col-sm-8
         input.form-control(type='password' name='log_password'  id='password' placeholder='密码' required)
 
   .form-group
-    .col-sm-offset-2.col-sm-10
+    .col-sm-offset-2.col-sm-8
       .btn.btn-primary.signup_login 登录
       a.btn.btn-link.col-sm-offset-1.signup_register(href="#signup") 没有账号 立即注册
 
 form.form_register.form-horizontal(data-parsley-validate)
   .form-group
     label.col-sm-2.control-label(for='username') 用户名
-    .col-sm-10
+    .col-sm-8
       input.form-control(type='text' name='username'  id='username' placeholder='用户名' required)
 
   .form-group
     label.col-sm-2.control-label(for='password') 密码
-    .col-sm-10
+    .col-sm-8
       input.form-control(type='password' name='password'  id='password' placeholder='密码' required)
 
   .form-group
     label.col-sm-2.control-label(for='name') 姓名
-    .col-sm-10
+    .col-sm-8
       input.form-control(type='text' name='name' placeholder='姓名'  id='name' required)
 
   .form-group
       label.col-sm-2.control-label(for='email') 邮箱
-      .col-sm-10
+      .col-sm-8
         input.form-control(type='email' name='email' placeholder='邮箱'  id='email'  required)
 
   .form-group
     label.col-sm-2.control-label 身份
-    .col-sm-10
+    .col-sm-8
       label.radio-inline
         input(type='radio' name='identity' id='Student' value='Student')
-        | 教师
+        | 学生
       label.radio-inline
         input(type='radio' name='identity'  id='Teacher' value='Teacher')
-        | 学生
+        | 教师
 
   .form-group
-    .col-sm-offset-2.col-sm-10
+    .col-sm-offset-2.col-sm-8
       .btn.btn-primary.register_register 注册
       a.btn.btn-link.col-sm-offset-1.register_signup(href="/") 已有账号 直接登录
