@@ -9,5 +9,4 @@ Meteor.methods {}
 Router.route '/', ->
     Session.set "current-user" undefined
 
-Meteor.startup -> if Meteor.is-client
-  $ 'form[data-parsley-validate]' .parsley!
+Meteor.startup ->

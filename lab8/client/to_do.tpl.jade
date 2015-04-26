@@ -5,8 +5,8 @@ if user
         span.caret
       ul.dropdown-menu(role='menu' aria-labelledby='todo')
         if user.identity = 'Student'
-          li.submit-homework(role='presentation')
-            a(role='menuitem' tabindex='-1' href='#') 提交作业
+          li.all-assignments(role='presentation')
+            a(role='menuitem' tabindex='-1' href='#') 所有作业
           li.my-homeworks(role='presentation')
             a(role='menuitem' tabindex='-1' href='#') 我的作业
         else if user.identity = 'Teacher'

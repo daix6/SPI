@@ -1,0 +1,16 @@
+.all-homeworks.col-sm-offset-2
+  if homeworks.length <= 0
+    p.info 还没有人提交作业哦
+  else
+    .list-group
+      each homo in homeworks
+        ul.list-group-item.list-unstyled
+          li 学生：#{homo.name}
+          li #{homo.content}
+          li
+            form.grade-form
+              .form-group
+                label(for='#{home._id}'+'grade') 分数
+                input.form-control(type='number' id='#{home._id}'+'grade' placeholder='分数')
+              .form-group
+                .btn.btn-primary.give-grade 提交

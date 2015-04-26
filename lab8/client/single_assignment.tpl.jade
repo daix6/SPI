@@ -1,0 +1,17 @@
+.single-assignment.col-sm-offset-2.col-sm-8
+  .assignment_info
+    dl.dl-horizontal
+      dt 标题
+      dd #{assignment.title}
+      dt 描述
+      dd #{assignment.description}
+      dt 要求
+      dd #{assignment.require}
+
+    p.deadline.bg-info 尚未到截止日期
+    p.deadline.bg-danger 已经到达截止日期
+
+  if user.identity = 'Student'
+    +submit-homework
+  if user.identity = 'Teacher'
+    +show-homework-and-grade
