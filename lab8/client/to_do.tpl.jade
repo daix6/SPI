@@ -7,8 +7,6 @@ if user
         if user.identity = 'Student'
           li.all-assignments(role='presentation')
             a(role='menuitem' tabindex='-1' href='#') 所有作业
-          li.my-homeworks(role='presentation')
-            a(role='menuitem' tabindex='-1' href='#') 我的作业
         else if user.identity = 'Teacher'
           li.post-assignment(role='presentation')
             a(role='menuitem' tabindex='-1' href='#') 发布作业
