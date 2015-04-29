@@ -1,18 +1,18 @@
-if isStudent
+if user
   .all-assignments.col-sm-offset-2.col-sm-8
-    p 太棒辣，没有作业！
+    if isNotAssignments
+      if isStudent
+        p 太棒辣，没有作业！
+      else if isTeacher
+        p 你还没有发布过作业，快来发布吧～
+        .btn.btn-primary.zero_post 发布作业
 
-else if isTeacher
-  .all-assignments.col-sm-offset-2.col-sm-8
-    if assignments.length <= 0
-      p 你还没有发布过作业，快来发布吧～
-      .btn.btn-primary.zero_post 发布作业
     else
       .list-group
-        each assign in assignments
-          a.list-group-item(href="##{assign._id}")
+        each assignments
+          a.list-group-item(href="##{this._id}")
             ul
-              li 题目：#{assign.title}
-              li 描述：#{assign.description}
-              li 截止日期：#{assign.deadline}
-              li 要求：#{assign.require}
+              li 题目：#{this.title}
+              li 描述：#{this.description}
+              li 截止日期：#{this.deadline}
+              li 要求：#{this.require}

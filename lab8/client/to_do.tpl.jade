@@ -5,10 +5,10 @@ if user
         span.caret
       ul.dropdown-menu(role='menu' aria-labelledby='todo')
         if isStudent
-          li.all-assignments(role='presentation')
+          li.show-all-assignments(role='presentation')
             a(role='menuitem' tabindex='-1' href='#') 所有作业
         else if isTeacher
           li.post-assignment(role='presentation')
             a(role='menuitem' tabindex='-1' href='#') 发布作业
-          li.all-assignments(role='presentation')
+          li.show-all-assignments(role='presentation')
             a(role='menuitem' tabindex='-1' href='#') 所有作业

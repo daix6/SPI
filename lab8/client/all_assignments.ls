@@ -9,6 +9,9 @@ if Meteor.is-client
         user.identity is "Teacher"
 
     assignments: -> Assignment.find!fetch!
+    is-not-assignments: ->
+      assignments = Assignment.find!fetch!
+      assignments.length <= 0
   }
 
   Template.all_assignments.events {
