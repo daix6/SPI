@@ -13,7 +13,7 @@ if Meteor.is-client
     'click .assign-post': (ev, tpl)->
       title = ($ "input[name=assign_title]") .val!
       description = ($ "input[name=assign_description]") .val!
-      deadline = ($ "input[name=assign_deadline]") .val!
+      deadline = ($ "input[name=assign_deadline]") .val! .replace "T" " "
       requirement = ($ "input[name=assign_require]") .val!
       Assignment.insert ass = {title, description, deadline, requirement}
       ($ ".form_post") .css "display" "none"

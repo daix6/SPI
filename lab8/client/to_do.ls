@@ -13,8 +13,12 @@ if Meteor.is-client
     'click .post-assignment': (ev, tpl)->
         $ (".form_post") .css "display" "block"
         $ (".all-assignments") .css "display" "none"
+        $ (".single-assignment") .css "display" "none"
+        $ (".submit-homework") .css "display" "none"
 
     'click .show-all-assignments': (ev, tpl)->
         $ (".all-assignments") .css "display" "block"
         $ (".form_post") .css "display" "none"
+        $ (".single-assignment") .css "display" "none"
+        $ (".submit-homework") .css "display" "none"
   }

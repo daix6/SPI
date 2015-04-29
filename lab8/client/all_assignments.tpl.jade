@@ -10,9 +10,8 @@ if user
     else
       .list-group
         each assignments
-          a.list-group-item(href="##{this._id}")
-            ul
-              li 题目：#{this.title}
-              li 描述：#{this.description}
-              li 截止日期：#{this.deadline}
-              li 要求：#{this.require}
+          ul.list-group-item(id="#{this._id}")
+            li(id="#{this._id}") 题目：#{this.title}
+            li(id="#{this._id}") 描述：#{this.description}
+            li(id="#{this._id}") 截止日期：#{this.deadline}
+            li(id="#{this._id}") 要求：#{this.requirement}

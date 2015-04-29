@@ -20,6 +20,8 @@ if Meteor.is-client
         $ (".all-assignments") .css "display" "none"
 
     'click .list-group-item': (ev, tpl)->
+        ($ ".single-assignment")[0] .id = ev.target.id
         $ (".single-assignment") .css "display" "block"
         $ (".all-assignments") .css "display" "none"
+        $ (".submit-homework") .css "display" "none"
   }

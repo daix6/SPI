@@ -8,5 +8,7 @@ if Meteor.is-client
         user = Session.get "current-user"
         user.identity is "Teacher"
 
-    assignment: -> Assignment.findOne {_id: window.location.hash}
+    assignment: ->
+        id = ($ ".single-assignment")[0] .id
+        Assignment.findOne {_id: id}
   }
