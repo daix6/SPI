@@ -11,7 +11,7 @@
     p.deadline.bg-info 尚未到截止日期
     p.deadline.bg-danger 已经到达截止日期
 
-  if user.identity = 'Student'
-    +submit-homework
-  if user.identity = 'Teacher'
-    +show-homework-and-grade
+  if isStudent
+    +submit_homework
+  if isTeacher
+    +show_homework_and_grade

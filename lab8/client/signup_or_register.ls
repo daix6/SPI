@@ -1,6 +1,12 @@
 if Meteor.is-client
   Template.signup_or_register.helpers {
     user: -> Session.get "current-user"
+    is-student: ->
+        user = Session.get "current-user"
+        user.identity is "Student"
+    is-teacher: ->
+        user = Session.get "current-user"
+        user.identity is "Teacher"
   }
 
   Template.signup_or_register.events {
@@ -8,8 +14,9 @@ if Meteor.is-client
         $(".form_signup") .css "display" "none"
         $ (".form_register")  .css "display" "block"
         $ "input" .val ""
-        ($ "input[name=identity]")[0] .val "Student"
-        ($ "input[name=identity]")[1] .val "Teacher"
+        ($ "#Student") .val "Student"
+        ($ "#Teacher") .val "Teacher"
+
 
     'click .register_signup': (ev, tpl)  !->
         $(".form_signup") .css "display" "block"
@@ -33,7 +40,7 @@ if Meteor.is-client
         email = ($ "input[name=email]") .val!
         for form_identity in ($ "input[name=identity]")
             if form_identity.checked
-                identity = form_identity.value
+                identity = form_identity.id
         user = User.findOne {username: username}
         if user then
             alert "There already have #{username}, why not change an username?"
@@ -43,9 +50,4 @@ if Meteor.is-client
             $(".form_signup") .css "display" "none"
             $ (".form_register")  .css "display" "none"
 
-    'click .signout': (ev, tpl) ->
-        Session.set "current-user" undefined
-        $(".form_signup") .css "display" "block"
-        $ (".form_register")  .css "display" "none"
-        $ "input" .val ""
   }

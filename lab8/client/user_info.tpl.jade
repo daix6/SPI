@@ -1,7 +1,7 @@
 if user
   .col-sm-2
     .dropdown.user-info
-      if user.identity = 'Student'
+      if isStudent
         button.student.btn.dropdown-toggle#userInfo(type='button' data-toggle='dropdown') #{user.name}
           span.caret
       else
@@ -13,9 +13,9 @@ if user
         li(role='presentation')
           a(role='menuitem' tabindex='-1' href='#') 邮箱：#{user.email}
         li(role='presentation')
-          if user.identity = 'Student'
+          if isStudent
             a(role='menuitem' tabindex='-1' href='#') 身份：学生
-          else if user.identity = 'Teacher'
+          else if isTeacher
             a(role='menuitem' tabindex='-1' href='#') 身份：教师
         li(role='presentation')
           a.signout(role='menuitem' tabindex='-1' href='#') 登出

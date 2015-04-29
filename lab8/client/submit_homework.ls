@@ -4,7 +4,7 @@ if Meteor.is-client
 
     assignment-id: -> window.location.hash
 
-    homework: -> homework.findOne {username: Session.get "current-user", assignment-id: window.location.hash}
+    homework: -> Homework.findOne {username: Session.get "current-user", assignment-id: window.location.hash}
   }
 
   Template.submit_homework.events {

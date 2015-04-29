@@ -1,6 +1,12 @@
 if Meteor.is-client
   Template.to_do.helpers {
     user: -> Session.get "current-user"
+    is-student: ->
+        user = Session.get "current-user"
+        user.identity is "Student"
+    is-teacher: ->
+        user = Session.get "current-user"
+        user.identity is "Teacher"
   }
 
   Template.to_do.events {

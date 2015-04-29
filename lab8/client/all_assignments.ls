@@ -1,6 +1,12 @@
 if Meteor.is-client
   Template.all_assignments.helpers {
     user: -> Session.get "current-user"
+    is-student: ->
+        user = Session.get "current-user"
+        user.identity is "Student"
+    is-teacher: ->
+        user = Session.get "current-user"
+        user.identity is "Teacher"
 
     assignments: -> Assignment.find!fetch!
   }

@@ -1,8 +1,8 @@
-if user.identity = 'Student'
+if isStudent
   .all-assignments.col-sm-offset-2.col-sm-8
     p 太棒辣，没有作业！
 
-else if user.identity = 'Teacher'
+else if isTeacher
   .all-assignments.col-sm-offset-2.col-sm-8
     if assignments.length <= 0
       p 你还没有发布过作业，快来发布吧～
@@ -10,7 +10,7 @@ else if user.identity = 'Teacher'
     else
       .list-group
         each assign in assignments
-          a.list-group-item(href='#'+"#{assign._id}")
+          a.list-group-item(href="##{assign._id}")
             ul
               li 题目：#{assign.title}
               li 描述：#{assign.description}

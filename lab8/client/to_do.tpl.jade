@@ -4,10 +4,10 @@ if user
       button.btn.dropdown-toggle#todo(type='button' data-toggle='dropdown') 你要？
         span.caret
       ul.dropdown-menu(role='menu' aria-labelledby='todo')
-        if user.identity = 'Student'
+        if isStudent
           li.all-assignments(role='presentation')
             a(role='menuitem' tabindex='-1' href='#') 所有作业
-        else if user.identity = 'Teacher'
+        else if isTeacher
           li.post-assignment(role='presentation')
             a(role='menuitem' tabindex='-1' href='#') 发布作业
           li.all-assignments(role='presentation')
