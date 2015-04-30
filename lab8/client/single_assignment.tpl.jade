@@ -7,12 +7,12 @@ if user
         dt 描述
         dd #{assignment.description}
         dt 要求
-        dd #{assignment.require}
+        dd #{assignment.requirement}
 
       p.deadline.bg-info 尚未到截止日期
       p.deadline.bg-danger 已经到达截止日期
 
-    if isStudent
-      +submit_homework
-    if isTeacher
-      +show_homework_and_grade
+    //- if isStudent
+    //-   +submit_homework
+    //- if isTeacher
+    //-   +show_homework_and_grade

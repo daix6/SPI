@@ -14,5 +14,8 @@ if Meteor.is-client
         Session.set "current-user" undefined
         $(".form_signup") .css "display" "block"
         $ (".form_register") .css "display" "none"
+        $ (".form_post") .css "display" "none"
+        $ (".all-assignments") .css "display" "none"
+        $ (".single-assignment") .css "display" "none"
         ($ "input") .val ""
   }
