@@ -6,12 +6,20 @@ Router.configure {
     Meteor.subscribe 'Assignment'
 }
 
-Router.route '/', {name: 'assignments_list'}
+Router.route '/', {name: 'index'}
+Router.route '/signin', {name: 'signin'}
+Router.route '/signup', {name: 'signup'}
+Router.route '/singout', !->
+  Meteor.logout !->
+    Router.go '/signin'
 
 Router.route '/assignments/:id', {
   name: 'assignment_page',
   data: ->
-    Assignment.findOne @.params._id
+    Assignment.find-one @.params._id
 }
 
 Router.on-before-action 'dataNotFound', {only: 'assignment_page'}
+
+root = exports ? @
+root.Router = Router

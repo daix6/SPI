@@ -13,3 +13,5 @@ mquandalle:jade
 vasaka:livescript-compiler
 accounts-password
 iron:router
+underscore
+sacha:spin
