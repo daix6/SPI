@@ -1,1 +1,14 @@
-.assignment-page
+.main
+  .assignment-page
+    ul
+      li 题目：#{title}
+      li teacher: #{authorName}
+      li 描述：#{description}
+      li deadline: #{deadline}
+      li require: #{requirement}
+      li
+        a(href='assignments/#{url}/homworks')
+  if isTeacher
+    p |teacher
+  if isStudent
+    p |student

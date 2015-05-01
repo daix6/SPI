@@ -1,10 +1,9 @@
-.assignments
-  if haveAssignments
-    .list-group
-      each assignments
-        +assignment_item
-  else
-    .main
-      p.bg-warning
-        span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
+if haveAssignments
+  .assignments.list-group
+    each assignments
+      +assignmentItem
+else
+  .main
+    p.bg-warning
+      span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
         | no assignments
