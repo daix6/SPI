@@ -1,5 +1,5 @@
-.assignment
-  .assignment-content
-    h3
-      a(href='#') ...
-  a.btn.btn-deafult
+a.list-group-item.main(href='/assignments/#{this.url}')
+  ul
+    li 题目：#{this.title}
+    li teacher: #{this.authorName}
+    li 描述：#{this.description}

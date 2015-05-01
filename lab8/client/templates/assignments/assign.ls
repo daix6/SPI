@@ -9,6 +9,7 @@ Template.assign.events {
       deadline: ($ e.target) .find '[name=deadline]' .val! .replace 'T', ' '
       requirement: ($ e.target) .find '[name=requirement]' .val!
       author: Meteor.user!._id
+      author-name: Meteor.user!.profile.name
     }
 
     if Assignment.find-one {url: assignment.url} then

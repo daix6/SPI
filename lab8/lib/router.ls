@@ -17,10 +17,10 @@ Router.route '/assign', {name: 'assign'}
 
 Router.route '/assignments', {name: 'assignmentsList'}
 
-Router.route '/assignments/:_id', {
+Router.route '/assignments/:url', {
   name: 'assignment_page',
   data: ->
-    Assignment.find-one @.params._id
+    Assignment.find-one {url: @.params.url}
 }
 
 require-login = !->

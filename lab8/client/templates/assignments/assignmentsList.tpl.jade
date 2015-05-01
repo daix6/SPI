@@ -1,7 +1,8 @@
 .assignments
   if haveAssignments
-    each assignments
-      +assignment_item
+    .list-group
+      each assignments
+        +assignment_item
   else
     .main
       p.bg-warning
