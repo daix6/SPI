@@ -14,13 +14,18 @@ Router.route '/signout', !->
     Router.go '/signin', {name: 'signin'}
 
 Router.route '/assign', {name: 'assign'}
-
 Router.route '/assignments', {name: 'assignmentsList'}
-
 Router.route '/assignments/:url', {
-  name: 'assignment_page',
+  name: 'assignmentPage',
   data: ->
     Assignment.find-one {url: @.params.url}
+}
+
+Router.route '/assignments/:url/homeworks', {
+  name: 'homeworksList',
+  data: ->
+    homeworks = Homework.find {assignment-url: @.params.url} .fetch!
+    homeworks
 }
 
 require-login = !->

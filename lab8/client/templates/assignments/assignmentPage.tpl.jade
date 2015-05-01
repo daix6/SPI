@@ -6,9 +6,6 @@
       li 描述：#{description}
       li deadline: #{deadline}
       li require: #{requirement}
-      li
-        a(href='assignments/#{url}/homworks')
-  if isTeacher
-    p |teacher
-  if isStudent
-    p |student
+      if isTeacher
+        li
+          a(href='/assignments/#{url}/homeworks') homeworks
