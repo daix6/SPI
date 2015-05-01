@@ -2,34 +2,54 @@ body {
   background: #eee;
   color: #666;
 
-  .header {
-    .navbar {
-      margin-bottom: 10px;
-    }
-    .navbar .navbar-inner {
+  .navbar {
+    margin-bottom: 10px;
+
+    .navbar-inner {
       border-radius: 0px 0px 3px 3px;
     }
-    .page {
-      position: absolute;
-      top: 0px;
-      width: 100%;
+
+    .navbar-collapse {
+      a.a-info {
+        background-color: rgb(208, 247, 247) !important;
+      }
+      a.a-all {
+        background-color: rgb(219, 244, 243) !important;
+      }
+      a.a-post {
+        background-color: rgb(222, 237, 200) !important;
+      }
+      a.a-user, .a-signin {
+        background-color: beige !important;
+      }
+      a.a-signout, .a-signup {
+        background-color: rgb(255, 240, 226) !important;
+      }
     }
-    .jumbotron{
-      text-align: center;
-    }
-    .jumbotron h2{
+  }
+  .jumbotron{
+    text-align: center;
+
+    h2 {
       font-size: 60px;
       font-weight: 100;
     }
   }
 
-  .main {
-    background: #fff;
-    border-radius: 3px;
-    padding: 10px;
-    margin-bottom: 10px;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  #main {
+    .main {
+      background: #fff;
+      border-radius: 3px;
+      padding: 10px;
+      margin-bottom: 10px;
+      -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+      -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+
+      p.bg-warning {
+        margin: 0;
+        padding: 1rem;
+      }
+    }
   }
 }
