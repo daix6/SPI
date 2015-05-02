@@ -12,4 +12,7 @@ ul.list-group-item.main
           label(for='#{this._id}') 分数
           input.form-control(type='number' name='grade' id='#{this._id}' placeholder='分数')
         .form-group
-          input.btn.btn-primary(type='submit' value='提交')
+          if overtime
+            input.btn.btn-primary(type='submit' value='提交')
+          else
+            input.btn.btn-primary(type='submit' value='提交' disabled='disabled')

@@ -4,6 +4,15 @@ ul {
   color: rgb(102, 102, 102);
 }
 
+p.bg-warning, p.bg-danger, p.bg-info {
+  margin: 0 40px 10px 0;
+  padding: 1rem !important;
+}
+
+p.bg-danger, p.bg-warning {
+  margin-left: 40px;
+}
+
 body {
   background: #eee;
   color: #666;
@@ -52,18 +61,10 @@ body {
       -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 
-      p.bg-warning {
-        margin: 0;
-        padding: 1rem;
-      }
 
       .student-homework {
         .already {
           margin-left: 40px;
-
-          p.bg-info {
-            padding: 1rem;
-          }
         }
       }
     }

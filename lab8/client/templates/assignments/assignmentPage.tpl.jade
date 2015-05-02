@@ -9,6 +9,12 @@
       if isTeacher
         li
           a(href='/assignments/#{assignment.url}/homeworks') homeworks
+
+  if overtime
+    p.bg-danger
+      span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
+      | deadline daole
+
   if isStudent
     .student-homework
       +studentHomework
