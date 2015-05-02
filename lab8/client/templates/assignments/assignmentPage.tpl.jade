@@ -1,14 +1,14 @@
 .main
   .assignment-page
     ul
-      li 题目：#{title}
-      li teacher: #{authorName}
-      li 描述：#{description}
-      li deadline: #{deadline}
-      li require: #{requirement}
+      li 题目：#{assignment.title}
+      li teacher: #{assignment.authorName}
+      li 描述：#{assignment.description}
+      li deadline: #{assignment.deadline}
+      li require: #{assignment.requirement}
       if isTeacher
         li
-          a(href='/assignments/#{url}/homeworks') homeworks
+          a(href='/assignments/#{assignment.url}/homeworks') homeworks
   if isStudent
     .student-homework
       +studentHomework

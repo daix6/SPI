@@ -4,6 +4,7 @@ Router.configure {
   not-found-template: 'not_found',
   wait-on: ->
     Meteor.subscribe 'Assignment'
+    Meteor.subscribe 'Homework'
 }
 
 Router.route '/', {name: 'index'}
@@ -18,7 +19,10 @@ Router.route '/assignments', {name: 'assignmentsList'}
 Router.route '/assignments/:url', {
   name: 'assignmentPage',
   data: ->
-    Assignment.find-one {url: @.params.url}
+    obj = new Object!
+    obj.assignment = Assignment.find-one {url: @params.url}
+    obj.homework = Homework.find-one {author-id: Meteor.user-id!, assignment-url: @params.url}
+    obj
 }
 
 Router.route '/assignments/:url/homeworks', {name: 'homeworksList'}
@@ -26,11 +30,11 @@ Router.route '/assignments/:url/homeworks', {name: 'homeworksList'}
 require-login = !->
   if !Meteor.user! then
     if Meteor.loggingIn! and Meteor.user!.profile.identity is 'Teacher' then
-      @.render @.loading-template
+      @render @loading-template
     else
-      @.render 'access_denied'
+      @render 'access_denied'
   else
-    @.next!
+    @next!
 
 Router.on-before-action 'dataNotFound', {only: 'assignment_page'}
 Router.on-before-action require-login, {only: 'assign'}
