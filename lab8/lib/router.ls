@@ -21,12 +21,7 @@ Router.route '/assignments/:url', {
     Assignment.find-one {url: @.params.url}
 }
 
-Router.route '/assignments/:url/homeworks', {
-  name: 'homeworksList',
-  data: ->
-    homeworks = Homework.find {assignment-url: @.params.url} .fetch!
-    homeworks
-}
+Router.route '/assignments/:url/homeworks', {name: 'homeworksList'}
 
 require-login = !->
   if !Meteor.user! then

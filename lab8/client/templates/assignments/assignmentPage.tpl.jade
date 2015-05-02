@@ -9,3 +9,6 @@
       if isTeacher
         li
           a(href='/assignments/#{url}/homeworks') homeworks
+  if isStudent
+    .student-homework
+      +studentHomework

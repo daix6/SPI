@@ -1,8 +1,9 @@
-.homework.list-group
+if haveHomeworks
+  .homework.list-group
     each homeworks
       +homeworkItem
-
+else
   .main
     p.bg-warning
       span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
-        | no homeworks
+      | no homeworks
