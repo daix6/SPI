@@ -12,15 +12,15 @@ nav.navbar.navbar-default(role='navigation')
         li
           a.a-all(href="/assignments")
             span.glyphicon.glyphicon-list(aria-hidden='true')
-            | All Assignments
+            | 所有作业
         if isTeacher
           li
             a.a-post(href='/assign')
               span.glyphicon.glyphicon-plus(aria-hidden='true')
-              | post assignment
+              | 发布作业
       else
         li
-          a.a-info An useful application for education~
+          a.a-info 基于meteor的作业发布与提交网站
     ul.nav.navbar-nav.navbar-right
       if currentUser
         li

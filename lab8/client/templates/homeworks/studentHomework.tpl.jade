@@ -18,7 +18,7 @@ if homework
             textarea.form-control(name='content' id='content' placeholder='你的作业写在这里' required)
         .form-group
           .col-sm-offset-1.col-sm-8
-              input.btn.btn-primary(type='submit' value='gengxin')
+              input.btn.btn-primary(type='submit' value='更新')
     else
       form#first.form-horizontal
         .form-group
@@ -28,4 +28,4 @@ if homework
           input(type='hidden' name='_id' value='#{homework._id}')
         .form-group
           .col-sm-offset-1.col-sm-8
-              input.btn.btn-primary(type='submit' value='tijiao')
+              input.btn.btn-primary(type='submit' value='提交')
