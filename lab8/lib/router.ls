@@ -46,6 +46,8 @@ Router.route '/assignments/:url/homeworks', {
     obj
 }
 
+Router.route '/assignments/:url/modify', {name: 'modifyAssignment'}
+
 require-login = !->
   if !Meteor.user! then
     if Meteor.loggingIn! then
@@ -53,7 +55,6 @@ require-login = !->
   else
     @next!
 
-Router.on-before-action 'dataNotFound', {only: 'assignment_page'}
 Router.on-before-action require-login, {except: ['signin', 'signup']}
 
 root = exports ? @

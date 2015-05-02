@@ -1,4 +1,4 @@
-Template.assignmentsList.helpers {
+Template.assignments-list.helpers {
   assignments: ->
     Assignment.find!.fetch!
   have-assignments: ->

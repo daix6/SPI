@@ -9,6 +9,11 @@
       if isTeacher
         li
           a(href='/assignments/#{assignment.url}/homeworks') homeworks
+        if overtime
+          br
+        else
+          li
+            a(href='/assignments/#{assignment.url}/modify') modify the assignment
 
   if overtime
     p.bg-danger

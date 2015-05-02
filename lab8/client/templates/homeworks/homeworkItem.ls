@@ -1,4 +1,4 @@
-Template.homeworksList.events {
+Template.homework-item.events {
   'submit form': (e)->
     e.preventDefault!
 
