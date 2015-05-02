@@ -25,7 +25,14 @@ Router.route '/assignments/:url', {
     obj
 }
 
-Router.route '/assignments/:url/homeworks', {name: 'homeworksList'}
+Router.route '/assignments/:url/homeworks', {
+  name: 'homeworksList',
+  data: ->
+    obj = new Object!
+    obj.homeworks = Homework.find {assignment-url: @params.url} .fetch!
+    obj.have-homeworks = Homework.find {assignment-url: @params.url} .fetch! .length > 0
+    obj
+}
 
 require-login = !->
   if !Meteor.user! then
